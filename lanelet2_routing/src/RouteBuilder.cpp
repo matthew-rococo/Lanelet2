@@ -1,6 +1,6 @@
-#include "lanelet2_routing/internal/RouteBuilder.h"
+#include "internal/RouteBuilder.h"
 #include <unordered_set>
-#include "lanelet2_routing/RoutingGraph.h"
+#include "RoutingGraph.h"
 
 namespace lanelet {
 namespace routing {

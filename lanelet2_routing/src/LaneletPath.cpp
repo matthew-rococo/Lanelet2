@@ -1,4 +1,4 @@
-#include "lanelet2_routing/LaneletPath.h"
+#include "LaneletPath.h"
 #include <lanelet2_core/geometry/Lanelet.h>
 
 namespace lanelet {

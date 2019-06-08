@@ -1,11 +1,11 @@
-#include "lanelet2_routing/internal/RoutingGraphBuilder.h"
+#include "internal/RoutingGraphBuilder.h"
 #include <lanelet2_core/LaneletMap.h>
 #include <lanelet2_core/geometry/Area.h>
 #include <lanelet2_core/geometry/Lanelet.h>
 #include <unordered_map>
-#include "lanelet2_routing/Exceptions.h"
-#include "lanelet2_routing/Graph.h"
-#include "lanelet2_routing/RoutingGraph.h"
+#include "Exceptions.h"
+#include "Graph.h"
+#include "RoutingGraph.h"
 
 namespace lanelet {
 namespace routing {

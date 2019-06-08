@@ -1,6 +1,6 @@
 #pragma once
-#include "lanelet2_routing/LaneletPath.h"
-#include "lanelet2_routing/Route.h"
+#include "LaneletPath.h"
+#include "Route.h"
 
 namespace lanelet {
 namespace routing {
