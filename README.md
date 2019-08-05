@@ -17,6 +17,7 @@ Features:
 - **IO Interface** for reading and writing e.g. _osm_ data formats
 - **Python** bindings for the whole C++ interface
 - **Boost Geometry** support for all thinkable kinds of geometry calculations on map primitives
+- Comes with **docker**, **catkin** and (experimental) **conan** support
 - Released under the [**BSD 3-Clause license**](LICENSE)
 
 ![](lanelet2_core/doc/images/lanelet2_example_image.png)
@@ -46,7 +47,7 @@ python -c "import lanelet2"                   # quick check to see everything is
 
 The docker image contains a link to your local lanelet2, so you can work and see changes (almost) at the same time. Work with two screens, one local and one on docker. Make your code changes locally, then run again `catkin build` on docker to recompile the code (update python modules).
 
-### Manual installation
+### Manual installation using Catkin
 
 In case you want to build it in your own way (without the above Docker image) use these instructions.
 
@@ -87,11 +88,37 @@ catkin build
 
 If unsure, see the [Dockerfile](Dockerfile) or the [travis build log](https://travis-ci.org/fzi-forschungszentrum-informatik/Lanelet2). It shows the the full installation process, with subsequent build and test based on a docker image with a clean ubuntu installation.
 
+### Manual, experimental installation using conan
+For non-catkin users, we also offer a conan based install proces. Its experimental and might not work on all platforms, expecially Windows.
+Since conan handles installing all the dependencies, all you need is a cloned repository and conan itself:
+```bash
+pip install conan empy catkin_pkg
+conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan # requried for python bindings
+git clone https://github.com/fzi-forschungszentrum-informatik/lanelet2.git
+cd lanelet2
+```
+
+From here, just use the default conan build/install procedure, e.g.:
+```bash
+conan source .
+conan create . lanelet2/stable --build=missing
+```
+
+To be able to use the python bindings, you have to make conan export the PYTHONPATH for lanelet2:
+```bash
+conan install lanelet2/0.0.0@lanelet2/stable -g virtualenv # replace 0.0.0 with the version shown by conan
+source activate.sh
+python -c "import lanelet2" # or whatever you want to do
+source deactivate.sh
+```
+
 ### Python3
 
 The python bindings are build for your default python installation by default (which currently is python2 on most systems). To build for python3 instead of python2, create a python3 virtualenv before initializing the workspace with `catkin init`. The command `python` should point to `python3`. 
 
 After `catkin init` run `catkin config --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo -DPYTHON_VERSION=3.6` to make sure that the correct python version is used. Then build and use as usual.
+
+If you are using `conan` for building, you just have to make sure to use conan with python3.
 
 ## Examples
 Examples and common use cases in both C++ and Python can be found [here](lanelet2_examples/README.md).
